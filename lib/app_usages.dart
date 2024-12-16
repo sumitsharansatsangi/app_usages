@@ -1,13 +1,5 @@
 import 'package:flutter/services.dart';
 
-import 'app_usages_platform_interface.dart';
-
-class AppUsages {
-  Future<String?> getPlatformVersion() {
-    return AppUsagesPlatform.instance.getPlatformVersion();
-  }
-}
-
 class AppUsagePlugin {
   static const MethodChannel _channel = MethodChannel('app_usages');
 

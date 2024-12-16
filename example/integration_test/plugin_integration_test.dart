@@ -6,20 +6,15 @@
 // For more information about Flutter integration tests, please see
 // https://flutter.dev/to/integration-testing
 
-
+import 'package:app_usages/app_usages.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-
-import 'package:app_usages/app_usages.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('getPlatformVersion test', (WidgetTester tester) async {
-    final AppUsages plugin = AppUsages();
-    final String? version = await plugin.getPlatformVersion();
-    // The version string depends on the host platform running the test, so
-    // just assert that some non-empty string is returned.
-    expect(version?.isNotEmpty, true);
+    final usages = await AppUsagePlugin.getAppUsageStats(DateTime(2024), DateTime.now());
+    expect(usages.isNotEmpty, true);
   });
 }

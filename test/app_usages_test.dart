@@ -20,10 +20,7 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    AppUsages appUsagesPlugin = AppUsages();
-    MockAppUsagesPlatform fakePlatform = MockAppUsagesPlatform();
-    AppUsagesPlatform.instance = fakePlatform;
-
-    expect(await appUsagesPlugin.getPlatformVersion(), '42');
+    final usages = await AppUsagePlugin.getAppUsageStats(DateTime(2024), DateTime.now());
+    expect(usages.isNotEmpty, true);
   });
 }
