@@ -1,4 +1,7 @@
-## 0.0.3
+## 0.0.5
+* Icon fix.
+
+* ## 0.0.3
 * Added buildAppIcon to get Icon widget.
 
 ## 0.0.2

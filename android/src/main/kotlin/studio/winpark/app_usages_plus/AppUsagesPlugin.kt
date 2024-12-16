@@ -111,21 +111,34 @@ class AppUsagesPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
 
   private fun getAppIconBase64(packageManager: PackageManager, appInfo: ApplicationInfo): String {
     return try {
+      // Get the app's icon as a Drawable
       val drawable = packageManager.getApplicationIcon(appInfo)
-      if (drawable is BitmapDrawable) {
-        val bitmap = drawable.bitmap
-        val outputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-        val byteArray = outputStream.toByteArray()
-        Base64.encodeToString(byteArray, Base64.DEFAULT)
-      } else {
-        ""
+
+      // Convert Drawable to Bitmap
+      val bitmap = when (drawable) {
+        is BitmapDrawable -> drawable.bitmap
+        else -> {
+          val width = drawable.intrinsicWidth.takeIf { it > 0 } ?: 1
+          val height = drawable.intrinsicHeight.takeIf { it > 0 } ?: 1
+          val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+          val canvas = android.graphics.Canvas(bitmap)
+          drawable.setBounds(0, 0, canvas.width, canvas.height)
+          drawable.draw(canvas)
+          bitmap
+        }
       }
+
+      // Convert Bitmap to Base64 (NO_WRAP to avoid line breaks)
+      val outputStream = ByteArrayOutputStream()
+      bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+      val byteArray = outputStream.toByteArray()
+      Base64.encodeToString(byteArray, Base64.NO_WRAP)
     } catch (e: Exception) {
-      Log.e("AppUsagePlugin", "Error fetching app icon: ${e.message}")
-      ""
+      Log.e("AppUsagePlugin", "Error converting icon to Base64 for ${appInfo.packageName}: ${e.message}")
+      "" // Return empty string if any error occurs
     }
   }
+
 
   private fun getInstallTime(packageName: String): Long {
     return try {

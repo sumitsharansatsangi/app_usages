@@ -1,3 +1,4 @@
+import 'package:app_usages_plus/app_usage_data.dart';
 import 'package:app_usages_plus/app_usages_plus.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final usages = <Map<String, dynamic>>[];
+  final usages = <AppUsageData>[];
 
   @override
   void initState() {
