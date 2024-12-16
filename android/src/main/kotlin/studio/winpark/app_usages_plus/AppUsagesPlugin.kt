@@ -6,10 +6,14 @@ import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.provider.Settings
-import android.util.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.util.Base64
+import io.flutter.Log
+import java.io.ByteArrayOutputStream
 
 class AppUsagesPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
 
@@ -33,7 +37,7 @@ class AppUsagesPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
         val args = call.arguments as Map<*, *>
         val startDate = args["startDate"] as Long
         val endDate = args["endDate"] as Long
-        val packageNames = args["packageNames"] as? List<String> // Nullable list of package names
+        val packageNames = args["packageNames"] as List<String>? // Nullable list of package names
         result.success(getAppUsageStats(startDate, endDate, packageNames))
       }
 
@@ -62,7 +66,6 @@ class AppUsagesPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
       if (usageStat.totalTimeInForeground <= 0) return@forEach
       val packageName = usageStat.packageName
 
-      // Check if the package is in the user-provided list (if provided)
       if (packageNames != null && !packageNames.contains(packageName)) {
         return@forEach
       }
@@ -80,11 +83,14 @@ class AppUsagesPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
               )
             )
           } else {
+            val appIcon = getAppIconBase64(packageManager, appInfo)
+
             appsList.add(
               mapOf(
                 "packageName" to packageName,
                 "appLabel" to packageManager.getApplicationLabel(appInfo),
                 "installTime" to getInstallTime(packageName),
+                "icon" to appIcon, // Add the app icon
                 "usages" to mutableListOf(
                   mapOf(
                     "totalTimeInForeground" to usageStat.totalTimeInForeground,
@@ -103,6 +109,23 @@ class AppUsagesPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
     return appsList
   }
 
+  private fun getAppIconBase64(packageManager: PackageManager, appInfo: ApplicationInfo): String {
+    return try {
+      val drawable = packageManager.getApplicationIcon(appInfo)
+      if (drawable is BitmapDrawable) {
+        val bitmap = drawable.bitmap
+        val outputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        val byteArray = outputStream.toByteArray()
+        Base64.encodeToString(byteArray, Base64.DEFAULT)
+      } else {
+        ""
+      }
+    } catch (e: Exception) {
+      Log.e("AppUsagePlugin", "Error fetching app icon: ${e.message}")
+      ""
+    }
+  }
 
   private fun getInstallTime(packageName: String): Long {
     return try {

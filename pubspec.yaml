@@ -1,6 +1,6 @@
 name: app_usages_plus
 description: "A plugin to receive app usage information."
-version: 0.0.1
+version: 0.0.3
 homepage: 'https://github.com/vikkaspattel/app_usages'
 
 environment:
