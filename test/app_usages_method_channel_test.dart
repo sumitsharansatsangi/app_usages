@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:app_usages/app_usages_method_channel.dart';
+import 'package:app_usages_plus/app_usages_plus_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   MethodChannelAppUsages platform = MethodChannelAppUsages();
-  const MethodChannel channel = MethodChannel('app_usages');
+  const MethodChannel channel = MethodChannel('app_usages_plus');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(

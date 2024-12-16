@@ -6,7 +6,7 @@
 // For more information about Flutter integration tests, please see
 // https://flutter.dev/to/integration-testing
 
-import 'package:app_usages/app_usages.dart';
+import 'package:app_usages_plus/app_usages_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 

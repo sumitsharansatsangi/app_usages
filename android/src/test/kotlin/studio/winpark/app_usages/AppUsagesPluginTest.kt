@@ -1,4 +1,4 @@
-package studio.winpark.app_usages
+package studio.winpark.app_usages_plus
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel

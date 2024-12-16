@@ -1,4 +1,4 @@
-import 'package:app_usages/app_usages.dart';
+import 'package:app_usages_plus/app_usages_plus.dart';
 import 'package:flutter/material.dart';
 
 void main() {

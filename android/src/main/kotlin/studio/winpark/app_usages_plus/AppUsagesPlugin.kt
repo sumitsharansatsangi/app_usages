@@ -1,4 +1,4 @@
-package studio.winpark.app_usages
+package studio.winpark.app_usages_plus
 
 import android.app.usage.UsageStatsManager
 import android.content.Context
@@ -19,7 +19,7 @@ class AppUsagesPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
 
   override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     context = binding.applicationContext
-    channel = MethodChannel(binding.binaryMessenger, "app_usages")
+    channel = MethodChannel(binding.binaryMessenger, "app_usages_plus")
     channel.setMethodCallHandler(this)
   }
 

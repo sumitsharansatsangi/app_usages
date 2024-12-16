@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:app_usages/app_usages.dart';
-import 'package:app_usages/app_usages_platform_interface.dart';
-import 'package:app_usages/app_usages_method_channel.dart';
+import 'package:app_usages_plus/app_usages_plus.dart';
+import 'package:app_usages_plus/app_usages_plus_platform_interface.dart';
+import 'package:app_usages_plus/app_usages_plus_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockAppUsagesPlatform

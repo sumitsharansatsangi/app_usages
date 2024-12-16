@@ -1,6 +1,6 @@
-# app_usages_example
+# app_usages_plus_example
 
-Demonstrates how to use the app_usages plugin.
+Demonstrates how to use the app_usages_plus plugin.
 
 ## Getting Started
 

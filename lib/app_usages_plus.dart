@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
 class AppUsagePlugin {
-  static const MethodChannel _channel = MethodChannel('app_usages');
+  static const MethodChannel _channel = MethodChannel('app_usages_plus');
 
   static Future<List<Map<String, dynamic>>> getAppUsageStats(DateTime startDate, DateTime endDate, {List<String>? packageNames}) async {
     final result = await _channel.invokeMethod('getAppUsageStats', {

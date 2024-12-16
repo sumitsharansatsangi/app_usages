@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "studio.winpark.app_usages_example"
+    namespace = "studio.winpark.app_usages_plus_example"
     compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
@@ -19,7 +19,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "studio.winpark.app_usages_example"
+        applicationId = "studio.winpark.app_usages_plus_example"
         minSdk = 22
         targetSdk = 35
         versionCode = flutter.versionCode

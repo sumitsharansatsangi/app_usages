@@ -1,5 +1,5 @@
-name: app_usages_example
-description: "Demonstrates how to use the app_usages plugin."
+name: app_usages_plus_example
+description: "Demonstrates how to use the app_usages_plus plugin."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  app_usages:
+  app_usages_plus:
     path: ../
 
 

@@ -1,6 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'app_usages_method_channel.dart';
+import 'app_usages_plus_method_channel.dart';
 
 abstract class AppUsagesPlatform extends PlatformInterface {
   /// Constructs a AppUsagesPlatform.

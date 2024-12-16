@@ -1,4 +1,4 @@
-# app_usages
+# app_usages_plus
 
 A new Flutter project.
 
