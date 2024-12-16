@@ -1,7 +1,8 @@
 name: app_usages
-description: "A new Flutter project."
+description: "A plugin to receive app usage information."
 version: 0.0.1
-homepage: 'https://github.com/studio-winpark/app_usages'
+homepage: 'https://github.com/vikkaspattel/app_usages'
+publish_to: 'https://pub.dev'
 
 environment:
   sdk: ^3.5.4
