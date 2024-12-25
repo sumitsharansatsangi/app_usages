@@ -1,4 +1,4 @@
-## [0.0.6]
+## [0.0.6 - 0.0.7]
 
 * Updated readme.
 
@@ -6,7 +6,8 @@
 
 * Icon fix.
 
-* ## [0.0.3]
+## [0.0.3]
+
 * Added buildAppIcon to get Icon widget.
 
 ## [0.0.2]
