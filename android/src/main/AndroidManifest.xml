@@ -2,9 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="studio.winpark.app_usages_plus">
     <!--  Permission to access usage stats  -->
-    <uses-permission
-        android:name="android.permission.PACKAGE_USAGE_STATS"
-        tools:ignore="ProtectedPermissions" />
+
     <!--  Additional metadata for plugin usage (optional but helpful)  -->
     <application>
         <meta-data

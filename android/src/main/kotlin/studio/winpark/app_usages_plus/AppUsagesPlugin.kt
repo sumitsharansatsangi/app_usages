@@ -37,7 +37,7 @@ class AppUsagesPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
         val args = call.arguments as Map<*, *>
         val startDate = args["startDate"] as Long
         val endDate = args["endDate"] as Long
-        val packageNames = args["packageNames"] as List<String>? // Nullable list of package names
+        val packageNames = args["packageNames"] as List<String>?
         result.success(getAppUsageStats(startDate, endDate, packageNames))
       }
 
@@ -73,11 +73,12 @@ class AppUsagesPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
       try {
         val appInfo = packageManager.getApplicationInfo(packageName, 0)
         if ((appInfo.flags and ApplicationInfo.FLAG_SYSTEM) == 0) {
-          val app = appsList.firstOrNull { it["packageName"] == packageName }
+          val app = appsList.firstOrNull { map: Map<String, Any> ->
+            map["packageName"] == packageName }
           if (app != null) {
             val usages = app["usages"] as MutableList<Map<String, Any>>
             usages.add(
-              mapOf(
+              mapOf<String, Any>(
                 "totalTimeInForeground" to usageStat.totalTimeInForeground,
                 "date" to usageStat.firstTimeStamp
               )
@@ -92,7 +93,7 @@ class AppUsagesPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
                 "installTime" to getInstallTime(packageName),
                 "icon" to appIcon, // Add the app icon
                 "usages" to mutableListOf(
-                  mapOf(
+                  mapOf<String, Any>(
                     "totalTimeInForeground" to usageStat.totalTimeInForeground,
                     "date" to usageStat.firstTimeStamp
                   )

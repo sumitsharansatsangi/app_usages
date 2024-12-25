@@ -1,15 +1,33 @@
 # app_usages_plus
 
-A new Flutter project.
+**A plugin to get app usage information for android devices using start date, end date and packages
+for whitelist.**
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/to/develop-plugins),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+* Get usages information for apps:
+    - App name
+    - package name
+    - Install time
+    - Icon (Base64 to Uint8List)
+    - Usage in milliseconds with timestamp
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Required permissions
 
+- `android.permission.QUERY_ALL_PACKAGES`
+- `android.permission.PACKAGE_USAGE_STATS`
+
+## Usage
+
+* To get app usage information:
+
+`final usages = await AppUsagePlugin.getAppUsageStats(startDate, endDate, packageNames: ['com.whatsapp','com.instagram.android'],);`
+
+* Parameters
+
+- `startDate`: DateTime
+- `endDate`: DateTime
+- `packageNames`: List<String.>?
+
+* if you want to get information about limited applications, you can pass the `packageNames`
+  parameter.

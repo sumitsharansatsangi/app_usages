@@ -14,7 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final usages = <AppUsageData>[];
+  final List<AppUsageData> usages = <AppUsageData>[];
 
   @override
   void initState() {

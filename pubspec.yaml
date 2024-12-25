@@ -1,6 +1,7 @@
 name: app_usages_plus
-description: "A plugin to receive app usage information."
-version: 0.0.5
+description: "A plugin to get app usage information for android devices using start date, end date and packages
+for whitelist."
+version: 0.0.6
 homepage: 'https://github.com/vikkaspattel/app_usages'
 
 environment:
